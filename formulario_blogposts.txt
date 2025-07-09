@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UsedsurfMex - Generador de Blog Posts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .wave-animation {
+            animation: wave 2s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #2563eb, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .loading {
+            display: none;
+        }
+        .loading.active {
+            display: block;
+        }
+        .result-section {
+            display: none;
+        }
+        .result-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="flex items-center justify-center mb-4">
+                <svg width="200" height="80" viewBox="0 0 200 80" class="text-blue-600 mr-4">
+                    <text x="10" y="35" font-size="28" font-weight="bold" fill="currentColor" font-family="serif">
+                        Usedsurf
+                    </text>
+                    <text x="140" y="35" font-size="28" font-weight="bold" fill="currentColor" font-family="serif" font-style="italic">
+                        Mex
+                    </text>
+                    <text x="120" y="55" font-size="12" fill="currentColor" font-family="serif" font-style="italic">
+                        since 2022
+                    </text>
+                </svg>
+                <div class="wave-animation text-4xl">🌊</div>
+            </div>
+            <h1 class="text-4xl font-bold gradient-text mb-2">Generador de Blog Posts de Surf</h1>
+            <p class="text-lg text-gray-600 mb-4">Crea contenido profesional para tu blog con IA</p>
+        </div>
+
+        <!-- Form Section -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8" id="form-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                ⚡ Configurar tu Blog Post
+            </h2>
+
+            <form id="blog-generator-form">
+                <!-- Categories -->
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">
+                        🏄‍♂️ Categoría de Contenido
+                    </label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <label class="category-option">
+                            <input type="radio" name="categoria" value="tecnicas" class="sr-only">
+                            <div class="p-4 rounded-lg border-2 cursor-pointer transition-all border-gray-200 hover:border-blue-300">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl mr-2">🏄‍♂️</span>
+                                    <span class="font-medium text-gray-800">Técnicas y Tips</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Consejos de técnica, posturas, remada</p>
+                            </div>
+                        </label>
+
+                        <label class="category-option">
+                            <input type="radio" name="categoria" value="equipamiento" class="sr-only">
+                            <div class="p-4 rounded-lg border-2 cursor-pointer transition-all border-gray-200 hover:border-blue-300">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl mr-2">🏄‍♀️</span>
+                                    <span class="font-medium text-gray-800">Equipamiento</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Tablas, trajes, accesorios</p>
+                            </div>
+                        </label>
+
+                        <label class="category-option">
+                            <input type="radio" name="categoria" value="spots" class="sr-only">
+                            <div class="p-4 rounded-lg border-2 cursor-pointer transition-all border-gray-200 hover:border-blue-300">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl mr-2">🌊</span>
+                                    <span class="font-medium text-gray-800">Spots y Destinos</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Destinos, playas, condiciones</p>
+                            </div>
+                        </label>
+
+                        <label class="category-option">
+                            <input type="radio" name="categoria" value="cultura" class="sr-only">
+                            <div class="p-4 rounded-lg border-2 cursor-pointer transition-all border-gray-200 hover:border-blue-300">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl mr-2">🤙</span>
+                                    <span class="font-medium text-gray-800">Cultura Surf</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Historia, leyendas, lifestyle</p>
+                            </div>
+                        </label>
+
+                        <label class="category-option">
+                            <input type="radio" name="categoria" value="competicion" class="sr-only">
+                            <div class="p-4 rounded-lg border-2 cursor-pointer transition-all border-gray-200 hover:border-blue-300">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl mr-2">🏆</span>
+                                    <span class="font-medium text-gray-800">Competición</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Circuitos, surfistas pro</p>
+                            </div>
+                        </label>
+
+                        <label class="category-option">
+                            <input type="radio" name="categoria" value="noticias" class="sr-only">
+                            <div class="p-4 rounded-lg border-2 cursor-pointer transition-all border-gray-200 hover:border-blue-300">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl mr-2">📰</span>
+                                    <span class="font-medium text-gray-800">Noticias</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Actualidad, innovaciones</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Custom Topic -->
+                <div class="mb-6">
+                    <label for="tema_personalizado" class="block text-sm font-semibold text-gray-700 mb-2">
+                        ✍️ O escribe un tema personalizado
+                    </label>
+                    <input type="text" id="tema_personalizado" name="tema_personalizado" 
+                        placeholder="Ej: Las mejores técnicas para surfear olas grandes en México"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <p class="text-xs text-gray-500 mt-1">💡 Tip: Sé específico para obtener mejor contenido</p>
+                </div>
+
+                <!-- Settings Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label for="audiencia" class="block text-sm font-semibold text-gray-700 mb-2">
+                            👥 Audiencia
+                        </label>
+                        <select id="audiencia" name="audiencia" 
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="principiantes">🔰 Principiantes</option>
+                            <option value="intermedios">📈 Intermedios</option>
+                            <option value="avanzados">🚀 Avanzados</option>
+                            <option value="todos">🌊 Todos los niveles</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="longitud" class="block text-sm font-semibold text-gray-700 mb-2">
+                            📏 Longitud
+                        </label>
+                        <select id="longitud" name="longitud" 
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="300-400">300-400 palabras</option>
+                            <option value="400-500" selected>400-500 palabras</option>
+                            <option value="500-700">500-700 palabras</option>
+                            <option value="700-1000">700-1000 palabras</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="tono" class="block text-sm font-semibold text-gray-700 mb-2">
+                            🎭 Tono
+                        </label>
+                        <select id="tono" name="tono" 
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="cercano" selected>😊 Cercano</option>
+                            <option value="tecnico">🔬 Técnico</option>
+                            <option value="profesional">💼 Profesional</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button type="submit" id="generate-btn"
+                    class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white p-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-cyan-700 transition-all flex items-center justify-center">
+                    <span id="btn-text">🚀 Generar Blog Post con IA</span>
+                    <div id="btn-loading" class="loading">
+                        <svg class="animate-spin h-5 w-5 ml-2" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Generando...
+                    </div>
+                </button>
+
+                <!-- Quick Actions -->
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <button type="button" onclick="llenarEjemplo()" 
+                        class="bg-purple-600 text-white p-3 rounded-lg hover:bg-purple-700 transition-colors">
+                        🎲 Ejemplo Rápido
+                    </button>
+                    <button type="button" onclick="limpiarFormulario()" 
+                        class="bg-gray-600 text-white p-3 rounded-lg hover:bg-gray-700 transition-colors">
+                        🗑️ Limpiar Todo
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div class="result-section bg-white rounded-2xl shadow-xl p-8" id="result-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                📝 Tu Blog Post Generado
+            </h2>
+            <div id="result-content">
+                <!-- El contenido se mostrará aquí -->
+            </div>
+        </div>
+
+        <!-- Error Section -->
+        <div class="result-section bg-red-50 border border-red-200 rounded-2xl p-8" id="error-section">
+            <h2 class="text-2xl font-bold text-red-800 mb-4 flex items-center">
+                ❌ Error
+            </h2>
+            <div id="error-content">
+                <!-- Los errores se mostrarán aquí -->
+            </div>
+            <button onclick="volverAlFormulario()" 
+                class="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                🔄 Intentar de Nuevo
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURA AQUÍ TU URL DE N8N WEBHOOK
+        const WEBHOOK_URL = https://markuzh.app.n8n.cloud/webhook/surf-blog-generator;
+        
+        // Manejo de selección de categorías
+        document.querySelectorAll('.category-option').forEach(label => {
+            label.addEventListener('click', function() {
+                // Remover selección anterior
+                document.querySelectorAll('.category-option div').forEach(div => {
+                    div.classList.remove('border-blue-500', 'bg-blue-50');
+                    div.classList.add('border-gray-200');
+                });
+                
+                // Agregar selección actual
+                const div = this.querySelector('div');
+                div.classList.remove('border-gray-200');
+                div.classList.add('border-blue-500', 'bg-blue-50');
+                
+                // Marcar el radio button
+                this.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
+        // Manejo del formulario
+        document.getElementById('blog-generator-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Obtener datos del formulario
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Validación básica
+            if (!data.categoria && !data.tema_personalizado) {
+                alert('Por favor selecciona una categoría o escribe un tema personalizado');
+                return;
+            }
+            
+            // Mostrar loading
+            mostrarLoading(true);
+            
+            try {
+                // Hacer la petición al webhook de n8n
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    mostrarResultado(result.blogPost, result.htmlCompleto);
+                } else {
+                    mostrarError(result.message || 'Error generando el contenido');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                mostrarError('Error de conexión. Verifica que el webhook esté configurado correctamente.');
+            } finally {
+                mostrarLoading(false);
+            }
+        });
+
+        function mostrarLoading(show) {
+            const btn = document.getElementById('generate-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnLoading = document.getElementById('btn-loading');
+            
+            if (show) {
+                btn.disabled = true;
+                btnText.style.display = 'none';
+                btnLoading.classList.add('active');
+            } else {
+                btn.disabled = false;
+                btnText.style.display = 'block';
+                btnLoading.classList.remove('active');
+            }
+        }
+
+        function mostrarResultado(blogPost, htmlCompleto) {
+            const resultContent = document.getElementById('result-content');
+            
+            resultContent.innerHTML = `
+                <!-- Meta Info -->
+                <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">${blogPost.title}</h3>
+                    <p class="text-gray-600 mb-3">${blogPost.metaDescription}</p>
+                    <div class="flex flex-wrap items-center gap-2 text-sm">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                            ⏱️ ${blogPost.readingTime}
+                        </span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">
+                            👥 ${blogPost.audience}
+                        </span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
+                            📝 ${blogPost.wordCount} palabras
+                        </span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        ${blogPost.tags.map(tag => `
+                            <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm">
+                                #${tag}
+                            </span>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- Content Preview -->
+                <div class="border rounded-lg p-6 max-h-96 overflow-y-auto bg-gray-50 mb-6">
+                    <div class="prose prose-blue max-w-none">
+                        ${blogPost.content}
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <button onclick="copiarHTML('${escapeHtml(blogPost.content)}')" 
+                        class="bg-green-600 text-white p-3 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center">
+                        📋 Copiar HTML
+                    </button>
+                    <button onclick="descargarHTML('${escapeHtml(blogPost.title)}', '${escapeHtml(htmlCompleto)}')" 
+                        class="bg-purple-600 text-white p-3 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center">
+                        💾 Descargar
+                    </button>
+                    <button onclick="compartirWhatsApp('${escapeHtml(blogPost.title)}', '${escapeHtml(blogPost.metaDescription)}')" 
+                        class="bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center">
+                        📱 WhatsApp
+                    </button>
+                    <button onclick="volverAlFormulario()" 
+                        class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
+                        🔄 Nuevo Post
+                    </button>
+                </div>
+
+                <!-- JSON Data -->
+                <details class="bg-gray-50 p-4 rounded-lg">
+                    <summary class="cursor-pointer font-medium text-gray-700 mb-2">
+                        🔍 Ver datos JSON (para desarrolladores)
+                    </summary>
+                    <pre class="text-xs text-gray-600 bg-white p-3 rounded border overflow-x-auto">${JSON.stringify(blogPost, null, 2)}</pre>
+                </details>
+            `;
+            
+            // Ocultar formulario y mostrar resultado
+            document.getElementById('form-section').style.display = 'none';
+            document.getElementById('result-section').classList.add('active');
+        }
+
+        function mostrarError(mensaje) {
+            const errorContent = document.getElementById('error-content');
+            errorContent.innerHTML = `
+                <p class="text-red-700 mb-4">${mensaje}</p>
+                <div class="bg-red-100 p-4 rounded-lg">
+                    <h4 class="font-semibold text-red-800 mb-2">Posibles soluciones:</h4>
+                    <ul class="text-red-700 text-sm space-y-1">
+                        <li>• Verifica que el webhook de n8n esté activo</li>
+                        <li>• Confirma que la URL del webhook sea correcta</li>
+                        <li>• Asegúrate de tener configurada la API de OpenAI</li>
+                        <li>• Revisa tu conexión a internet</li>
+                    </ul>
+                </div>
+            `;
+            
+            document.getElementById('form-section').style.display = 'none';
+            document.getElementById('error-section').classList.add('active');
+        }
+
+        function volverAlFormulario() {
+            document.getElementById('form-section').style.display = 'block';
+            document.getElementById('result-section').classList.remove('active');
+            document.getElementById('error-section').classList.remove('active');
+        }
+
+        function llenarEjemplo() {
+            // Seleccionar una categoría de ejemplo
+            document.querySelector('input[value="tecnicas"]').checked = true;
+            document.querySelector('input[value="tecnicas"]').closest('.category-option').click();
+            
+            // Llenar tema personalizado
+            document.getElementById('tema_personalizado').value = 'Técnicas de paddling para principiantes en olas pequeñas';
+            
+            // Configurar otros campos
+            document.getElementById('audiencia').value = 'principiantes';
+            document.getElementById('longitud').value = '400-500';
+            document.getElementById('tono').value = 'cercano';
+        }
+
+        function limpiarFormulario() {
+            document.getElementById('blog-generator-form').reset();
+            document.querySelectorAll('.category-option div').forEach(div => {
+                div.classList.remove('border-blue-500', 'bg-blue-50');
+                div.classList.add('border-gray-200');
+            });
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/'/g, "\\'").replace(/"/g, '\\"');
+        }
+
+        function copiarHTML(content) {
+            navigator.clipboard.writeText(content.replace(/\\'/g, "'").replace(/\\"/g, '"')).then(() => {
+                alert('¡HTML copiado al portapapeles!');
+            }).catch(err => {
+                console.error('Error copiando:', err);
+                alert('Error al copiar. Inténtalo manualmente.');
+            });
+        }
+
+        function descargarHTML(title, htmlContent) {
+            const blob = new Blob([htmlContent.replace(/\\'/g, "'").replace(/\\"/g, '"')], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}.html`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function compartirWhatsApp(title, description) {
+            const texto = `🏄‍♂️ ${title}\n\n${description}\n\n✨ Generado con UsedsurfMex Blog Generator`;
+            const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
