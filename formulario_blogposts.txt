@@ -242,7 +242,7 @@
 
     <script>
         // CONFIGURA AQUÍ TU URL DE N8N WEBHOOK
-        const WEBHOOK_URL = https://markuzh.app.n8n.cloud/webhook/surf-blog-generator;
+        const WEBHOOK_URL = https://markuzh.app.n8n.cloud/webhook-test/surf-blog-generator;
         
         // Manejo de selección de categorías
         document.querySelectorAll('.category-option').forEach(label => {
